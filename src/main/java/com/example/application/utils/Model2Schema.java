@@ -1,17 +1,17 @@
 package com.example.application.utils;
 
-import com.example.application.database.models.User;
-import com.example.application.enums.UserPower;
-import com.example.application.schemas.UserOutSchema;
+import com.example.application.database.models.UserModel;
+import com.example.application.enums.UserEnum.UserPowerEnum;
+import com.example.application.schemas.UserSchema.UserOutSchema;
 
 import java.util.UUID;
 
 public class Model2Schema {
-    public static UserOutSchema user2UserOutSchema(User user) {
+    public static UserOutSchema user2UserOutSchema(UserModel user) {
         final UUID id = user.getId();
         final String name = user.getName();
         final String email = user.getEmail();
-        final UserPower power = user.getPower();
+        final UserPowerEnum power = user.getPower();
         return new UserOutSchema(id, name, email, power);
     }
 }

@@ -1,14 +1,14 @@
 package com.example.application.utils;
 
-import com.example.application.database.models.User;
-import com.example.application.schemas.UserLoginSchema;
+import com.example.application.database.models.UserModel;
+import com.example.application.schemas.AuthSchema.AuthLoginSchema;
 
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Verify {
-    public static Boolean userPasswordVerify(UserLoginSchema input, User record) {
+    public static Boolean userPasswordVerify(AuthLoginSchema input, UserModel record) {
         UUID userId = record.getId();
         String inputPassword = input.password();
         String inputPasswd = new Encrypt().MD5(userId + inputPassword);

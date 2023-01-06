@@ -1,6 +1,6 @@
 package com.example.application.database.models;
 
-import com.example.application.enums.UserPower;
+import com.example.application.enums.UserEnum.UserPowerEnum;
 import com.example.application.utils.Encrypt;
 
 import javax.persistence.*;
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class UserModel {
     @Id
     @GeneratedValue
     private UUID id;
@@ -19,7 +19,7 @@ public class User {
     @Column(nullable = false)
     private String passwd;
     @Column(nullable = false)
-    private UserPower power;
+    private UserPowerEnum power;
 
     public UUID getId() {
         return this.id;
@@ -49,15 +49,15 @@ public class User {
         this.passwd = new Encrypt().MD5(this.id + password);
     }
 
-    public UserPower getPower() {
+    public UserPowerEnum getPower() {
         return this.power;
     }
 
-    public void setPower(UserPower power) {
+    public void setPower(UserPowerEnum power) {
         this.power = power;
     }
 
-    public void update(String name, String email, String password, UserPower power) {
+    public void update(String name, String email, String password, UserPowerEnum power) {
         if (name != null) this.setName(name);
         if (email != null) this.setEmail(email);
         if (password != null) this.setPasswd(password);
