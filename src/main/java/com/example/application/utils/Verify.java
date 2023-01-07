@@ -9,7 +9,6 @@ import java.util.UUID;
 
 public class Verify {
     public static Boolean userPasswordVerify(AuthLoginSchema input, UserModel record) {
-        UUID userId = record.getId();
         String inputPassword = input.password();
         String inputPasswd = new Encrypt().MD5(inputPassword);
         String realPasswd = record.getPasswd();
