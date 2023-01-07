@@ -29,6 +29,6 @@ public class Model2Schema {
         final ArticleTagEnum tag = article.getTag();
         final Timestamp insertDate = article.getInsertDate();
         final Timestamp updateDate = article.getUpdateDate();
-        return new ArticleOutSchema(id, title, content, author, category, tag, insertDate, updateDate);
+        return new ArticleOutSchema(id, title, content, user2UserOutSchema(author), category, tag, insertDate, updateDate);
     }
 }

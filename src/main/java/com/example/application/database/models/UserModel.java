@@ -49,7 +49,7 @@ public class UserModel {
     }
 
     public void setPasswd(final String password) {
-        this.passwd = new Encrypt().MD5(this.id + password);
+        this.passwd = new Encrypt().MD5(password);
     }
 
     public UserPowerEnum getPower() {

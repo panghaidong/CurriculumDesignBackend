@@ -11,16 +11,16 @@ public class Verify {
     public static Boolean userPasswordVerify(AuthLoginSchema input, UserModel record) {
         UUID userId = record.getId();
         String inputPassword = input.password();
-        String inputPasswd = new Encrypt().MD5(userId + inputPassword);
+        String inputPasswd = new Encrypt().MD5(inputPassword);
         String realPasswd = record.getPasswd();
         return Objects.equals(inputPasswd, realPasswd);
     }
 
-    public static Boolean userPowerVerify(HttpSession session, String userId) {
-        if (Integer.parseInt(session.getAttribute("power").toString()) == 1) {
+    public static Boolean userPowerVerify(HttpSession session, UUID userId) {
+        if (Integer.parseInt(session.getAttribute("power").toString()) == 0) {
             return true;
         } else {
-            return Objects.equals(session.getAttribute("id").toString(), userId);
+            return Objects.equals(session.getAttribute("id"), userId);
         }
     }
 }
