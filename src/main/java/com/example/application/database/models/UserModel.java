@@ -4,6 +4,7 @@ import com.example.application.enums.UserEnum.UserPowerEnum;
 import com.example.application.utils.Encrypt;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -12,14 +13,16 @@ public class UserModel {
     @Id
     @GeneratedValue
     private UUID id;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
     private String passwd;
     @Column(nullable = false)
     private UserPowerEnum power;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ArticleModel> articles;
 
     public UUID getId() {
         return this.id;

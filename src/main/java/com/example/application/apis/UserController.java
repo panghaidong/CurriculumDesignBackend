@@ -44,8 +44,8 @@ public class UserController {
         user.update(form.name(), form.email(), form.password(), form.power());
         UserOutSchema result = null;
         try {
-            userRepository.save(user);
-            result = new UserOutSchema(user.getId(), user.getName(), user.getEmail(), user.getPower());
+            final UserModel saveResult = userRepository.save(user);
+            result = Model2Schema.user2UserOutSchema(saveResult);
 
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
